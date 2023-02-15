@@ -37,7 +37,7 @@
 <div>
 
 <h2 align="middle">Overview</h2>
-<p>We gained further insight into common computer graphic sampling techniques. We saw how different sampling methods affected image quality and performance.</p>
+<p>In this project we implemented various rasterization features and sampling techniques. We began with simply rasterizing triangles by sampling points and performing the point in triangle. We then expanded on this by implementing antialiasing via supersampling, transformations, and rasterization via barycentric interpolation. Finally, we implemented texture sampling techniques, pixel sampling and level sampling on top of our previous implementation of super sampling and barycentric interpolation. We especially learned about the tradeoff between different sampling methods, and how they affected image quality and performance.</p>
 
 <h2 align="middle">Section I: Rasterization</h2>
 
@@ -129,6 +129,7 @@
   <div align="middle">
     <img src="images/levelformula.png" align="left" width="400px"/>
   </div>
+  <br><br>
 <p>For nearest level sampling we rounded the calculated level and for bilinear level sampling we took a lerp between the results of bilinear sampling on the levels above and below.</p>
 <p>Supersampling has the most powerful and precise antialiasing but at the cost of speed because we have to rasterize more pixels and memory because we have to resize the sample buffer to accomodate the additional pixels. Level sampling has the benefit of speed and precision because the mipmaps are already created but requires additional memory to store the mipmaps. Pixel sampling is fast and does not require any extra memory because it does not sample any extra pixels but has less powerful antialiasing because of how it approximates - nearest sampling can often miss the mark on pixels and bilinear sampling can have a bit of a blur effect because of how it blends the nearby points. </p>
 <div align="middle">
