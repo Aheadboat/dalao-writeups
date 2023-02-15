@@ -38,7 +38,7 @@
 
 <h3 align="middle">Part 1: Rasterizing single-color triangles</h3>
   
-  <p>We rasterize triangles by first creating a bounding box from the three vertices, then doing the three line test to determine if a point is inside or outside the triangle. Our algorithm is no worse than one that checks each sample within the bounding box of the triangle because thats exactly what we do. </p>
+<p>We rasterize triangles by first creating a bounding box from the three vertices, then doing the three line test to determine if a point is inside or outside the triangle. Our algorithm is no worse than one that checks each sample within the bounding box of the triangle because thats exactly what we do. </p>
 
 
 
@@ -87,8 +87,68 @@
 
 <h3 align="middle">Part 5: "Pixel sampling" for texture mapping</h3>
 
+<p>In pixel sampling we take the Barycentric coordinates for the point in the triangle and scale it by vectors of the u and v values in order to obtain a mapping onto the uv coordinates of the texture space. Since the uv coordinates are 0 to 1, we scaled it by the size of the texture. The issue, however, is that the coordinates do not map perfectly to each pixel of the texture so we must use nearest or bilinear sampling. Nearest sampling takes the closest pixel to the point, we did this by rounding our coordinates to the nearest integer. Bilinear sampling takes the closest four pixels to the point and performs linear interpolation between them. We found the closest pixels by taking the ceiling and the floor of the point and then we performed a 1D lerp horizontally and then another lerp vertically between the previous two lerps.</p>
+<div align="middle">
+  <table style="width=100%">
+    <tr>
+      <td>
+        <img src="images/nearestsampling.png" align="middle" width="400px"/>
+        <figcaption align="middle">Nearest sampling (1 sample per pixel)</figcaption>
+      </td>
+      <td>
+        <img src="images/nearestsampling16.png" align="middle" width="400px"/>
+        <figcaption align="middle">Nearest sampling (16 samples per pixel)</figcaption>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <img src="images/bilinearsampling.png" align="middle" width="400px"/>
+        <figcaption align="middle">Bilinear sampling (1 sample per pixel)</figcaption>
+      </td>
+      <td>
+        <img src="images/bilinearsampling16.png" align="middle" width="400px"/>
+        <figcaption align="middle">Bilinear sampling (16 samples per pixel)</figcaption>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+<p>Nearest sampling produced a more pixelated seeming image but sharper compared to bilinear sampling where the interpolation produced a smoother image but slightly blurrier seeming. This is apparent for instance in the white lines shown in the pixel inspector where it seems dashed with nearest sampling but more blended together with bilinear sampling. This difference is less apparent with the 16 pixels supersampling because when there are more, smaller pixels the inaccuracy of the mapping to the texture space is minimized and nearest sampling appears similarly clear.</p>
+
 
 <h3 align="middle">Part 6: "Level sampling" with mipmaps for texture mapping</h3>
+
+<p>The levels decrease in level of detail and in level sample we try to choose the level where we have close to one to one pixel movements. We implemented this by choosing a level using the formula:</p>
+<img src="images/levelformula.png" align="left" width="400px"/>
+<p>For nearest level sampling we rounded the calculated level and for bilinear level sampling we took a lerp between the results of bilinear sampling on the levels above and below.</p>
+<div align="middle">
+  <table style="width=100%">
+    <tr>
+      <td>
+        <img src="images/zeronear.png" align="middle" width="400px"/>
+        <figcaption align="middle">L_ZERO, P_NEAREST</figcaption>
+      </td>
+      <td>
+        <img src="images/zerolinear.png" align="middle" width="400px"/>
+        <figcaption align="middle">L_ZERO, P_LINEAR)</figcaption>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <img src="images/nearnear.png" align="middle" width="400px"/>
+        <figcaption align="middle">L_NEAREST, P_NEAREST</figcaption>
+      </td>
+      <td>
+        <img src="images/nearlinear.png" align="middle" width="400px"/>
+        <figcaption align="middle">L_NEAREST, P_LINEAR</figcaption>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+<p>sample text.</p>
 
 
 
