@@ -49,6 +49,7 @@
 
 <div align="middle">
   <img src="images/pixelinsepcted.png" align="middle" width=800px>
+  <figcaption align="middle">The edges of the triangle are aliased due to the basic nature of this sampling.</figcaption>
 </div>
 
 
@@ -60,9 +61,16 @@
     <table>
       <tbody>
         <tr>
-          <td><img src="images/sample1.png"></td>
-          <td><img src="images/sample4.png"></td>
-          <td><img src="images/sample16.png"></td>
+          <td><img src="images/sample1.png">
+            <figcaption align="middle">Degree 1 supersampling (no supersampling). You can see theres a gap in the pixels.</figcaption>
+          </td>
+          
+          <td><img src="images/sample4.png">
+            <figcaption align="middle">Degree 4 supersampling. You can see that the gap has been filled in now.</figcaption>
+          </td>
+          <td><img src="images/sample16.png">
+          <figcaption align="middle">Degree 16 supersampling. You can see that the gap has been fully filled in now.</figcaption>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -71,8 +79,9 @@
 
 <h3 align="middle">Part 3: Transforms</h3>
 
-<p>Made cubeman shrug his shoulders in the "it is what it is" pose. Had to rotate the arms to get the shoulder affect and further translate and rotate the forearms.</p>
+<p>Made cubeman shrug his shoulders. Had to rotate the arms to get the shoulder affect and further translate and rotate the forearms.</p>
 <img align="middle" src="images/screenshot_2-14_21-42-48.png">
+  <figcaption align="middle">It is what it is.</figcaption>
 <h2 align="middle">Section II: Sampling</h2>
 
 <h3 align="middle">Part 4: Barycentric coordinates</h3>
@@ -83,6 +92,7 @@
     <tr>
       <td>
       <img src="images/barycentric.png">
+        <figcaption align="middle">A triangle wherein the RGB values inside point to the point's relative position to the vertices.</figcaption>
       </td>
       <td>
       <img src="images/task4.png">
