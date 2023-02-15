@@ -43,29 +43,7 @@
 
 
 <div align="middle">
-  <table style="width=100%">
-    <tr>
-      <td>
-        <img src="images/image1.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
-      </td>
-      <td>
-        <img src="images/image2.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
-      </td>
-    </tr>
-    <br>
-    <tr>
-      <td>
-        <img src="images/image3.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
-      </td>
-      <td>
-        <img src="images/image4.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
-      </td>
-    </tr>
-  </table>
+  <img src="images/pixelinsepcted.png" align="middle" width=800px>
 </div>
 
 
@@ -73,19 +51,36 @@
 
   <p>Our supersampling algorithm involves dividing each pixel into sqrt(sample_rate) x sqrt(sample_rate) subpixels and sampling them. We then place these pixels into the sample buffer, which is resized by the sample rate (i.e. width * height * sample rate) in set_framebuffer_target, and then average all the associated sub-pixels into a single pixel in resolve_to_framebuffer. Supersampling by nature is an anti-aliasing technique, since it reduces artifacts and smoothens out rough edges by creating smoother transitions. In addition, it allows the inclusion of some pixels that might have been otherwise left out due to their exact centers not being within a triangle.</p>
   
-  <b>INSERT PICTURES</b>
+  <div align="middle">
+    <table>
+      <tbody>
+        <tr>
+          <td><img src="images/sample1.png"></td>
+          <td><img src="images/sample4.png"></td>
+          <td><img src="images/sample16.png"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 
 <h3 align="middle">Part 3: Transforms</h3>
 
 <p>Made cubeman shrug his shoulders in the "it is what it is" pose. Had to rotate the arms to get the shoulder affect and further translate and rotate the forearms.</p>
-
+<img align="middle" src="images/screenshot_2-14_21-42-48.png">
 <h2 align="middle">Section II: Sampling</h2>
 
 <h3 align="middle">Part 4: Barycentric coordinates</h3>
   
   <p>Barycentric coordinates essentially tell where a point is located by reference to a simplex, i.e. a triangle in 2d space. If this triangle has vertices labeled A, B, C, then the respective values of a point's barycentric coordinates a, b and c will tell where that point is located respectively to the vertices. If a=1, b=0, c=0, then we know the point is on vertex A.</p>
-
+  <div align="middle">
+    <div display="inline-block">
+      <img src="images/barycentric.png">
+    </div>
+    <div display="inline-block">
+      <img src="images/task4.png">
+    </div>
+  </div>
 
 <h3 align="middle">Part 5: "Pixel sampling" for texture mapping</h3>
 
