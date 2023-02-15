@@ -86,7 +86,7 @@
 
 <p>In pixel sampling we take the Barycentric coordinates for the point in the triangle and scale it by vectors of the <i>u</i> and <i>v</i> values in order to obtain a mapping onto the <i>uv</i> coordinates of the texture space. Since the <i>uv</i> coordinates are 0 to 1, we scaled it by the size of the texture. The issue, however, is that the coordinates do not map perfectly to each pixel of the texture so we must use nearest or bilinear sampling. Nearest sampling takes the closest pixel to the point, we did this by rounding our coordinates to the nearest integer. Bilinear sampling takes the closest four pixels to the point and performs linear interpolation between them. We found the closest pixels by taking the ceiling and the floor of the point and then we performed a 1D lerp horizontally and then another lerp vertically between the previous two lerps.</p>
 <div align="middle">
-  <table style="width=100%">
+  <table style="width=100%" box-sizing="border-box">
     <tr>
       <td>
         <img src="images/nearestsampling.png" align="middle" width="600px"/>
@@ -119,7 +119,7 @@
 <p>The levels decrease in level of detail and in level sample we try to choose the level where we have close to one to one pixel movements. We implemented this by choosing a level using the formula where <i>du/dx, dv/dx, du/dy, dv/dy</i> are calculated from the <i>uv</i> coordinate conversion of <i>(x,y), (x+1,y), (x,y+1)</i>, via their Barycentric coordinates: <img src="images/levelformula.png" align="left" width="400px"/> <br>For nearest level sampling we rounded the calculated level and for bilinear level sampling we took a lerp between the results of bilinear sampling on the levels above and below.</p>
 <p>Supersampling has the most powerful and precise antialiasing but at the cost of speed because we have to rasterize more pixels and memory because we have to resize the sample buffer to accomodate the additional pixels. Level sampling has the benefit of speed and precision because the mipmaps are already created but requires additional memory to store the mipmaps. Pixel sampling is fast and does not require any extra memory because it does not sample any extra pixels but has less powerful antialiasing because of how it approximates - nearest sampling can often miss the mark on pixels and bilinear sampling can have a bit of a blur effect because of how it blends the nearby points. </p>
 <div align="middle">
-  <table style="width=100%">
+  <table style="width=100%" box-sizing="border-box">
     <tr>
       <td>
         <img src="images/zeronear.png" align="middle" width="600px"/>
