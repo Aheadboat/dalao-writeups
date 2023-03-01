@@ -2,6 +2,12 @@
 	<head>
 	</head>
 	<body>
-		Project 2 here
+		<h1>Part 2</h1>
+		<p>The de Castejlau algorithm extends to Bezier surfaces by arranging multiple Bezier curves together. Given a collection of Bezier curves in 3D, with parameter u, we can create a Bezier surface by first creating Bezier curves as described in Part 1, and then evaluate the sliding Bezier curve (with parameter v) to develop a 3D Bezier surface.</p>
+		<h1>Part 4</h1>		
+		<p>First we made sure to have all the pointers on hand (10 halfedges, 4 vertices, 4 edges, 2 faces). Then, we reassign the halfedges according to the edge split algorithm, then make sure to reassign the correct halfedges to the correct vertices (post-flip). We ran into a bug where the mesh wasn't splitting properly, and after a lengthy debugging session (staring at the diagram) we discovered that we had wrongfully assigned a pointer to the wrong value.</p>
+		<h1>Part 5</h1>
+		<p>We implemented edge-split as per-the spec. We calculated the midpoint using the original vertices connecting the line we want to split, and reused all the original components (i.e. halfedge BC became BM, halfedge CB became CM, and we created two new half-edges to complete the original AB line). After reusing all components, we had to create 1 new vertex, 3 new edges, 6 new half-edges, and 2 new faces.</p>
+		
 	</body>
 </html>
