@@ -1,13 +1,71 @@
-<html>
-	<head>
-	</head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+  body {
+    padding: 100px;
+    width: 1000px;
+    margin: auto;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: #121212;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  img {
+    height: auto;
+    max-width: 100%; 
+    object-fit: contain;
+  }
+</style>
+<title>CS 184 Rasterizer</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
 	<body>
 		<h1>Part 2</h1>
 		<p>The de Castejlau algorithm extends to Bezier surfaces by arranging multiple Bezier curves together. Given a collection of Bezier curves in 3D, with parameter u, we can create a Bezier surface by first creating Bezier curves as described in Part 1, and then evaluate the sliding Bezier curve (with parameter v) to develop a 3D Bezier surface.</p>
+		<div align="middle">
+			<img src="images/part2.png">
+		</div>
 		<h1>Part 4</h1>		
 		<p>First we made sure to have all the pointers on hand (10 halfedges, 4 vertices, 4 edges, 2 faces). Then, we reassign the halfedges according to the edge split algorithm, then make sure to reassign the correct halfedges to the correct vertices (post-flip). We ran into a bug where the mesh wasn't splitting properly, and after a lengthy debugging session (staring at the diagram) we discovered that we had wrongfully assigned a pointer to the wrong value.</p>
+		<div align="middle">
+			<table>
+			  <tbody>
+				<tr>				  
+				  <td><img src="images/part2.png">
+					<figcaption align="middle">Before flipping edges</figcaption>
+				  </td>
+				  <td><img src="images/part4flips.png">
+				  <figcaption align="middle">After flipping edges</figcaption>
+				  </td>
+				</tr>
+			  </tbody>
+			</table>
+		  </div>
 		<h1>Part 5</h1>
 		<p>We implemented edge-split as per-the spec. We calculated the midpoint using the original vertices connecting the line we want to split, and reused all the original components (i.e. halfedge BC became BM, halfedge CB became CM, and we created two new half-edges to complete the original AB line). After reusing all components, we had to create 1 new vertex, 3 new edges, 6 new half-edges, and 2 new faces.</p>
+		<div align="middle">
+			<table>
+			  <tbody>
+				<tr>
+				  <td><img src="images/part5before.png">
+					<figcaption align="middle">Original teapot</figcaption>
+				  </td>
+				  
+				  <td><img src="images/part5postsplit.png">
+					<figcaption align="middle">Teapot after splitting edges</figcaption>
+				  </td>
+				  <td><img src="images/part5postsplitnflip.png">
+				  <figcaption align="middle">Teapot after splitting and flipping edges</figcaption>
+				  </td>
+				</tr>
+			  </tbody>
+			</table>
+		  </div>
 		
 	</body>
 </html>
