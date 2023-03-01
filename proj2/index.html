@@ -13,17 +13,19 @@
   }
   h1, h2, h3, h4 {
     font-family: 'Source Sans Pro', sans-serif;
+	text-align: 'middle';
   }
   img {
     height: auto;
-    max-width: 33%; 
+    max-width: 80%; 
     object-fit: contain;
   }
 </style>
-<title>CS 184 Rasterizer</title>
+<title>CS 184 MeshEdit</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
 </head>
+<<<<<<< HEAD
 <body>
 
 	<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2023</h1>
@@ -74,42 +76,60 @@
 			  </tbody>
 		  </table>
 		<h1>Part 2</h1>
+=======
+	<body>
+		<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2018</h1>
+		<h1 align="middle">Project 1: Rasterizer</h1>
+		<h2 align="middle">Alex Liang, Jason Gong, CS184-DaLao</h2>
+
+		<br><br>
+
+
+		<h2 align="middle">Overview</h2>
+		<p>Insert</p>
+		<h1 align="middle">Part 2: Bezier Surfaces with Separable 1D de Casteljau</h1>
+>>>>>>> aee502c912210311f5bd313fe33ff17a36956559
 		<p>The de Castejlau algorithm extends to Bezier surfaces by arranging multiple Bezier curves together. Given a collection of Bezier curves in 3D, with parameter u, we can create a Bezier surface by first creating Bezier curves as described in Part 1, and then evaluate the sliding Bezier curve (with parameter v) to develop a 3D Bezier surface.</p>
 		<div align="middle">
 			<img src="images/part2.png">
 		</div>
+<<<<<<< HEAD
 		<h1>Part 4</h1>
 		<img align="middle" src="images/Screenshot 2023-03-01 152633.png">
   		<figcaption align="middle">From "Guide to Implementing Edge Operations on a Halfedge Data Structure".</figcaption>	
 		<p>First we made sure to have all the pointers on hand (10 halfedges, 4 vertices, 4 edges, 2 faces). Then, we reassign the all of the pointers based on the "before flip" and "after flip" diagrams such that the edge from v1 to v0 now ran from v3 to v2 and the half edges were likewise redefined. We ran into a bug where flipping an edge would time out, which we fixed by cross checking each pointer with the diagram and found that we had wrongfully assigned some pointers to the wrong values.</p>
+=======
+		<h1 align="middle">Part 4: Edge Flip</h1>		
+		<p>First we made sure to have all the pointers on hand (10 halfedges, 4 vertices, 4 edges, 2 faces). Then, we reassign the halfedges according to the edge split algorithm, then make sure to reassign the correct halfedges to the correct vertices (post-flip). We ran into a bug where the mesh wasn't splitting properly, and after a lengthy debugging session (staring at the diagram) we discovered that we had wrongfully assigned a pointer to the wrong value.</p>
+>>>>>>> aee502c912210311f5bd313fe33ff17a36956559
 		<div align="middle">
 			<table>
 			  <tbody>
 				<tr>				  
-				  <td><img src="images/part2.png">
+				  <td align="center"><img align="middle" src="images/part2.png">
 					<figcaption align="middle">Before flipping edges</figcaption>
 				  </td>
-				  <td><img src="images/part4flips.png">
+				  <td align="center"><img align="middle" src="images/part4flips.png">
 				  <figcaption align="middle">After flipping edges</figcaption>
 				  </td>
 				</tr>
 			  </tbody>
 			</table>
 		  </div>
-		<h1>Part 5</h1>
+		<h1 align="middle">Part 5: Edge Split</h1>
 		<p>We implemented edge-split as per-the spec. We calculated the midpoint using the original vertices connecting the line we want to split, and reused all the original components (i.e. halfedge BC became BM, halfedge CB became CM, and we created two new half-edges to complete the original AB line). After reusing all components, we had to create 1 new vertex, 3 new edges, 6 new half-edges, and 2 new faces.</p>
 		<div align="middle">
 			<table>
 			  <tbody>
 				<tr>
-				  <td><img src="images/part5before.png">
+				  <td align="center"><img align="middle" src="images/part5before.png">
 					<figcaption align="middle">Original teapot</figcaption>
 				  </td>
 				  
-				  <td><img src="images/part5postsplit.png">
+				  <td align="center"><img align="middle" src="images/part5postsplit.png">
 					<figcaption align="middle">Teapot after splitting edges</figcaption>
 				  </td>
-				  <td><img src="images/part5postsplitnflip.png">
+				  <td align="center"><img align="middle" src="images/part5postsplitnflip.png">
 				  <figcaption align="middle">Teapot after splitting and flipping edges</figcaption>
 				  </td>
 				</tr>
