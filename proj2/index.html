@@ -25,7 +25,6 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
 </head>
-<<<<<<< HEAD
 <body>
 
 	<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2023</h1>
@@ -45,63 +44,45 @@
 			<tbody>
 			<tr>
 			  <td>
-			  <img src="images/q1.png">
+			  <img src="images/q1.png" align="middle" width="600px">
 				<figcaption align="middle"></figcaption>
 			  </td>
 			  <td>
-			  <img src="images/q1-1.png">
+			  <img src="images/q1-1.png" align="middle" width="600px">
 				<figcaption align="middle"></figcaption>
 			  </td>
 			  <td>
-				<img src="images/q1-2.png">
+				<img src="images/q1-2.png" align="middle" width="600px">
 				  <figcaption align="middle"></figcaption>
 				</td>
 				<td>
-				<img src="images/q1-3.png">
+				<img src="images/q1-3.png" align="middle" width="600px">
 				  <figcaption align="middle"></figcaption>
 				</td>
 				<td>
-			  <img src="images/q1-4.png">
+			  <img src="images/q1-4.png" align="middle" width="600px">
 				<figcaption align="middle"></figcaption>
 			  </td>
 			  <td>
-			  <img src="images/q1-5.png">
+			  <img src="images/q1-5.png" align="middle" width="600px">
 				<figcaption align="middle"></figcaption>
 			  </td>
 			  <td>
-				<img src="images/q1-6.png">
+				<img src="images/q1-6.png" align="middle" width="600px">
 				  <figcaption align="middle"></figcaption>
 				</td>
 			</tR>
 			  </tbody>
 		  </table>
 		<h1>Part 2</h1>
-=======
-	<body>
-		<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2018</h1>
-		<h1 align="middle">Project 1: Rasterizer</h1>
-		<h2 align="middle">Alex Liang, Jason Gong, CS184-DaLao</h2>
-
-		<br><br>
-
-
-		<h2 align="middle">Overview</h2>
-		<p>Insert</p>
-		<h1 align="middle">Part 2: Bezier Surfaces with Separable 1D de Casteljau</h1>
->>>>>>> aee502c912210311f5bd313fe33ff17a36956559
 		<p>The de Castejlau algorithm extends to Bezier surfaces by arranging multiple Bezier curves together. Given a collection of Bezier curves in 3D, with parameter u, we can create a Bezier surface by first creating Bezier curves as described in Part 1, and then evaluate the sliding Bezier curve (with parameter v) to develop a 3D Bezier surface.</p>
 		<div align="middle">
 			<img src="images/part2.png">
 		</div>
-<<<<<<< HEAD
 		<h1>Part 4</h1>
-		<img align="middle" src="images/Screenshot 2023-03-01 152633.png">
+		<img align="middle" src="images/Screenshot 2023-03-01 152633.png" align="middle" width="600px">
   		<figcaption align="middle">From "Guide to Implementing Edge Operations on a Halfedge Data Structure".</figcaption>	
 		<p>First we made sure to have all the pointers on hand (10 halfedges, 4 vertices, 4 edges, 2 faces). Then, we reassign the all of the pointers based on the "before flip" and "after flip" diagrams such that the edge from v1 to v0 now ran from v3 to v2 and the half edges were likewise redefined. We ran into a bug where flipping an edge would time out, which we fixed by cross checking each pointer with the diagram and found that we had wrongfully assigned some pointers to the wrong values.</p>
-=======
-		<h1 align="middle">Part 4: Edge Flip</h1>		
-		<p>First we made sure to have all the pointers on hand (10 halfedges, 4 vertices, 4 edges, 2 faces). Then, we reassign the halfedges according to the edge split algorithm, then make sure to reassign the correct halfedges to the correct vertices (post-flip). We ran into a bug where the mesh wasn't splitting properly, and after a lengthy debugging session (staring at the diagram) we discovered that we had wrongfully assigned a pointer to the wrong value.</p>
->>>>>>> aee502c912210311f5bd313fe33ff17a36956559
 		<div align="middle">
 			<table>
 			  <tbody>
@@ -137,12 +118,12 @@
 			</table>
 		  </div>
 		<h1>Part 6</h1>
-		<p>First, we loop through the vertices in the mesh to calculate their new positions after loop subdivision using the formula(1 - n * u) * original_position + u * original_neighbor_position_sum and store them in vertex->newPosition Original_neighbor_position_sum was calculating by looping over the neighbor positions and summing a vector, u from 3/(8*n) or 3/16 when u=3, n from vertex->degree. We set these vertices to isNew = false, since these are the original vertices.
-			Next, we loop over the edges in the mesh to calculate the new positions of the new vertices to be created by the formula  3/8 * (A + B) + 1/8 * (C + D) and store them in edge->newPosition. We set these edges to isNew = false, since they are original edges.
-			After that, we loop over all of the edges again and call splitEdge on them. In order to avoid traversing new edges we checked that each vertex of an edge is old, in which case the edge must be old. We transfer the saved new vertex position to the vertex in v->newPosition. We set this vertex to new and in splitEdge set the new edges that were created to new as well.
-			Then, we flip any new edge connecting an old vertex to a new vertex by checking if e->isNew == true && ((v0->isNew && !v1->isNew) || (v1->isNew && !v0->isNew)).
-			Finally, we loop over and set all of the vertices to their new positions as we determined previously.
-			There were a few bugs with our initial implementation. Some values were incorrectly being set as ints so the new positions calculated were not correct which we fixed by casting values to floats. We were also incorrectly determining and accounting for new edges being created which caused infinite loops when we split edges. We added a check for both vertices of an edge to be old to determine that an edge was original and can be split and in splitEdge additionally set the new edges created by splitting to new. Finally, we were trying to set the positions of the new vertices right after we created them through splitting but this resulted in a distorted mesh. We fixed this by setting all of the vertices old and new together at the end.
+		<p>First, we loop through the vertices in the mesh to calculate their new positions after loop subdivision using the formula(1 - n * u) * original_position + u * original_neighbor_position_sum and store them in vertex->newPosition Original_neighbor_position_sum was calculating by looping over the neighbor positions and summing a vector, u from 3/(8*n) or 3/16 when u=3, n from vertex->degree. We set these vertices to isNew = false, since these are the original vertices.</p>
+		<p>Next, we loop over the edges in the mesh to calculate the new positions of the new vertices to be created by the formula  3/8 * (A + B) + 1/8 * (C + D) and store them in edge->newPosition. We set these edges to isNew = false, since they are original edges.</p>
+		<p>After that, we loop over all of the edges again and call splitEdge on them. In order to avoid traversing new edges we checked that each vertex of an edge is old, in which case the edge must be old. We transfer the saved new vertex position to the vertex in v->newPosition. We set this vertex to new and in splitEdge set the new edges that were created to new as well.</p>
+		<p>Then, we flip any new edge connecting an old vertex to a new vertex by checking if e->isNew == true && ((v0->isNew && !v1->isNew) || (v1->isNew && !v0->isNew)).</p>
+		<p>Finally, we loop over and set all of the vertices to their new positions as we determined previously.</p>
+		<p>There were a few bugs with our initial implementation. Some values were incorrectly being set as ints so the new positions calculated were not correct which we fixed by casting values to floats. We were also incorrectly determining and accounting for new edges being created which caused infinite loops when we split edges. We added a check for both vertices of an edge to be old to determine that an edge was original and can be split and in splitEdge additionally set the new edges created by splitting to new. Finally, we were trying to set the positions of the new vertices right after we created them through splitting but this resulted in a distorted mesh. We fixed this by setting all of the vertices old and new together at the end.
 			</p>
 		<div align="middle">
 	</body>
