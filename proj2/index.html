@@ -45,40 +45,40 @@
 			  <tr>
 				<td>
 				  <img src="images/q1.png" align="middle" width="600px"/>
-				  <figcaption align="middle"></figcaption>
+				  <figcaption align="middle">step 1</figcaption>
 				</td>
 				<td>
 				  <img src="images/q1-1.png" align="middle" width="600px"/>
-				  <figcaption align="middle"></figcaption>
+				  <figcaption align="middle">step 2</figcaption>
 				</td>
 			  </tr>
 			  <br>
 			  <tr>
 				<td>
 				  <img src="images/q1-2.png" align="middle" width="600px"/>
-				  <figcaption align="middle"></figcaption>
+				  <figcaption align="middle">step 3</figcaption>
 				</td>
 				<td>
 				  <img src="images/q1-3.png" align="middle" width="600px"/>
-				  <figcaption align="middle"></figcaption>
+				  <figcaption align="middle">step 4</figcaption>
 				</td>
 			  </tr>
 			  <br>
 			  <tr>
 				<td>
 				  <img src="images/q1-4.png" align="middle" width="600px"/>
-				  <figcaption align="middle"></figcaption>
+				  <figcaption align="middle">control point</figcaption>
 				</td>
 				<td>
 				  <img src="images/q1-5.png" align="middle" width="600px"/>
-				  <figcaption align="middle"></figcaption>
+				  <figcaption align="middle">bezier curve</figcaption>
 				</td>
 			  </tr>
 			  <br>
 			  <tr>
 				<td>
 				  <img src="images/q1-6.png" align="middle" width="600px"/>
-				  <figcaption align="middle"></figcaption>
+				  <figcaption align="middle">curve with modified control points and t</figcaption>
 				</td>
 			  </tr>
 			</table>
@@ -91,7 +91,7 @@
 			<img src="images/part2.png">
 		</div>
 		<h1>Part 4</h1>
-		<img align="middle" src="images/Screenshot 2023-03-01 152633.png" align="middle" width="600px">
+		<img align="middle" src="images/Screenshot 2023-03-01 152633.png" align="middle" width="400px">
   		<figcaption align="middle">From "Guide to Implementing Edge Operations on a Halfedge Data Structure".</figcaption>	
 		<p>First we made sure to have all the pointers on hand (10 halfedges, 4 vertices, 4 edges, 2 faces). Then, we reassign the all of the pointers based on the "before flip" and "after flip" diagrams such that the edge from v1 to v0 now ran from v3 to v2 and the half edges were likewise redefined. We ran into a bug where flipping an edge would time out, which we fixed by cross checking each pointer with the diagram and found that we had wrongfully assigned some pointers to the wrong values.</p>
 		<div align="middle">
@@ -136,6 +136,68 @@
 		<p>Finally, we loop over and set all of the vertices to their new positions as we determined previously.</p>
 		<p>There were a few bugs with our initial implementation. Some values were incorrectly being set as ints so the new positions calculated were not correct which we fixed by casting values to floats. We were also incorrectly determining and accounting for new edges being created which caused infinite loops when we split edges. We added a check for both vertices of an edge to be old to determine that an edge was original and can be split and in splitEdge additionally set the new edges created by splitting to new. Finally, we were trying to set the positions of the new vertices right after we created them through splitting but this resulted in a distorted mesh. We fixed this by setting all of the vertices old and new together at the end.
 			</p>
+			<div align="middle">
+				<table style="width=100%" box-sizing="border-box">
+				  <tr>
+					<td>
+					  <img src="images/q6.png" align="middle" width="600px"/>
+					  <figcaption align="middle">step 1</figcaption>
+					</td>
+					<td>
+					  <img src="images/q6-1.png" align="middle" width="600px"/>
+					  <figcaption align="middle">step 2</figcaption>
+					</td>
+				  </tr>
+				  <br>
+				  <tr>
+					<td>
+					  <img src="images/q6-2.png" align="middle" width="600px"/>
+					  <figcaption align="middle">step 3</figcaption>
+					</td>
+					<td>
+					  <img src="images/q6-3.png" align="middle" width="600px"/>
+					  <figcaption align="middle">step 4</figcaption>
+					</td>
+				  </tr>
+				  <br>
+				  <tr>
+					<td>
+					  <img src="images/q6-4.png" align="middle" width="600px"/>
+					  <figcaption align="middle">control point</figcaption>
+					</td>
+				  </tr>
+				</table>
+			  </div>
+			  </div>
+		</div>
+		<p>With each iteration of loop subdivision the triangles are split into 4 equal triangles. This adds more edges to the mesh and makes the sharp edges and corners appear smoother.</p>
 		<div align="middle">
+			<table style="width=100%" box-sizing="border-box">
+				<tr>
+				  <td>
+					<img src="images/q6cow1.png" align="middle" width="600px"/>
+					<figcaption align="middle">step 1</figcaption>
+				  </td>
+				  <td>
+					<img src="images/q6cow.png" align="middle" width="600px"/>
+					<figcaption align="middle">step 2</figcaption>
+				  </td>
+				</tr>
+				<br>
+				<tr>
+				  <td>
+					<img src="images/qcow2.png" align="middle" width="600px"/>
+					<figcaption align="middle">step 3</figcaption>
+				  </td>
+				  <td>
+					<img src="images/qcow3.png" align="middle" width="600px"/>
+					<figcaption align="middle">step 4</figcaption>
+				  </td>
+				</tr>
+			  </table>
+			</div>
+			</div>
+			<p>With presplitting we distort the mesh slightly and reduce the softening effect on sharp corners and edges.</p>
+	  </div>
 	</body>
 </html>
