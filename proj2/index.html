@@ -28,7 +28,7 @@
 <body>
 
 	<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2023</h1>
-	<h1 align="middle">Project 1: Rasterizer</h1>
+	<h1 align="middle">Project 2: MeshEdit</h1>
 	<h2 align="middle">Alex Liang, Jason Gong, CS184-大佬 (team-21)</h2>
 	
 	<br><br>
@@ -39,8 +39,9 @@
 	<p>In this project we implemented various rasterization features and sampling techniques. We began with simply rasterizing triangles by sampling points and performing the point in triangle. We then expanded on this by implementing antialiasing via supersampling, transformations, and rasterization via barycentric interpolation. Finally, we implemented texture sampling techniques, pixel sampling and level sampling on top of our previous implementation of super sampling and barycentric interpolation. We especially learned about the tradeoff between different sampling methods, and how they affected image quality and performance.</p>
 	
 		<h1>Part 1</h1>
-		<p>De Castelijau’s algorithm recursively uses linear interpolation to find control points at each sub level until we get to a final point that lies on the bezier curve. We implemented a recursive step of this by iterating over the control points and summing a vector of <i>p_i'=lerp(p_i,p_(i+1),t)=(1-t)p_i+tp_(i+1)</i></p>
-		<table max-width=100%>
+		<p>De Castelijau’s algorithm recursively uses linear interpolation to find control points at each sub level until we get to a final point that lies on the bezier curve. We implemented a recursive step of this by iterating over the control points and summing a vector of p_i'=lerp(p_i,p_(i+1),t)=(1-t)p_i+tp_(i+1)</p>
+		<div align="middle"></div>
+		<table style="width=100%" box-sizing="border-box">
 			<tbody>
 			<tr>
 			  <td>
@@ -74,6 +75,8 @@
 			</tR>
 			  </tbody>
 		  </table>
+		</div>
+	</div>
 		<h1>Part 2</h1>
 		<p>The de Castejlau algorithm extends to Bezier surfaces by arranging multiple Bezier curves together. Given a collection of Bezier curves in 3D, with parameter u, we can create a Bezier surface by first creating Bezier curves as described in Part 1, and then evaluate the sliding Bezier curve (with parameter v) to develop a 3D Bezier surface.</p>
 		<div align="middle">
