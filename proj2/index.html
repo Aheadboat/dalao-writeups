@@ -40,42 +40,50 @@
 	
 		<h1>Part 1</h1>
 		<p>De Castelijau’s algorithm recursively uses linear interpolation to find control points at each sub level until we get to a final point that lies on the bezier curve. We implemented a recursive step of this by iterating over the control points and summing a vector of p_i'=lerp(p_i,p_(i+1),t)=(1-t)p_i+tp_(i+1)</p>
-		<div align="middle"></div>
-		<table style="width=100%" box-sizing="border-box">
-			<tbody>
-			<tr>
-			  <td>
-			  <img src="images/q1.png" align="middle" width="600px">
-				<figcaption align="middle"></figcaption>
-			  </td>
-			  <td>
-			  <img src="images/q1-1.png" align="middle" width="600px">
-				<figcaption align="middle"></figcaption>
-			  </td>
-			  <td>
-				<img src="images/q1-2.png" align="middle" width="600px">
+		<div align="middle">
+			<table style="width=100%" box-sizing="border-box">
+			  <tr>
+				<td>
+				  <img src="images/q1.png" align="middle" width="600px"/>
 				  <figcaption align="middle"></figcaption>
 				</td>
 				<td>
-				<img src="images/q1-3.png" align="middle" width="600px">
+				  <img src="images/q1-1.png" align="middle" width="600px"/>
+				  <figcaption align="middle"></figcaption>
+				</td>
+			  </tr>
+			  <br>
+			  <tr>
+				<td>
+				  <img src="images/q1-2.png" align="middle" width="600px"/>
 				  <figcaption align="middle"></figcaption>
 				</td>
 				<td>
-			  <img src="images/q1-4.png" align="middle" width="600px">
-				<figcaption align="middle"></figcaption>
-			  </td>
-			  <td>
-			  <img src="images/q1-5.png" align="middle" width="600px">
-				<figcaption align="middle"></figcaption>
-			  </td>
-			  <td>
-				<img src="images/q1-6.png" align="middle" width="600px">
+				  <img src="images/q1-3.png" align="middle" width="600px"/>
 				  <figcaption align="middle"></figcaption>
 				</td>
-			</tR>
-			  </tbody>
-		  </table>
-		</div>
+			  </tr>
+			  <br>
+			  <tr>
+				<td>
+				  <img src="images/q1-4.png" align="middle" width="600px"/>
+				  <figcaption align="middle"></figcaption>
+				</td>
+				<td>
+				  <img src="images/q1-5.png" align="middle" width="600px"/>
+				  <figcaption align="middle"></figcaption>
+				</td>
+			  </tr>
+			  <br>
+			  <tr>
+				<td>
+				  <img src="images/q1-6.png" align="middle" width="600px"/>
+				  <figcaption align="middle"></figcaption>
+				</td>
+			  </tr>
+			</table>
+		  </div>
+		  </div>
 	</div>
 		<h1>Part 2</h1>
 		<p>The de Castejlau algorithm extends to Bezier surfaces by arranging multiple Bezier curves together. Given a collection of Bezier curves in 3D, with parameter u, we can create a Bezier surface by first creating Bezier curves as described in Part 1, and then evaluate the sliding Bezier curve (with parameter v) to develop a 3D Bezier surface.</p>
