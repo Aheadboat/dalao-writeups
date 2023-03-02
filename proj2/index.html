@@ -36,7 +36,7 @@
 	<div>
 	
 	<h2 align="middle">Overview</h2>
-	<p>In this project we implemented various rasterization features and sampling techniques. We began with simply rasterizing triangles by sampling points and performing the point in triangle. We then expanded on this by implementing antialiasing via supersampling, transformations, and rasterization via barycentric interpolation. Finally, we implemented texture sampling techniques, pixel sampling and level sampling on top of our previous implementation of super sampling and barycentric interpolation. We especially learned about the tradeoff between different sampling methods, and how they affected image quality and performance.</p>
+	<p>In this project we implemented various techniques for geometric modeling in order to render and manipulate Bezier curves and surfaces and triangle meshes. We used de Castelijau’s algorithm to render bezier curves and then bezier surfaces to render triangle meshes with half edges. We then implemented features such as Phong shading, edge flipping and splitting, and finally, loop subdivision for upscaling. We learned a lot about how to create, manipulate, and traverse bezier curves and triangle meshes.</p>
 	
 		<h1>Part 1</h1>
 		<p>De Castelijau’s algorithm recursively uses linear interpolation to find control points at each sub level until we get to a final point that lies on the bezier curve. We implemented a recursive step of this by iterating over the control points and summing a vector of p_i'=lerp(p_i,p_(i+1),t)=(1-t)p_i+tp_(i+1)</p>
@@ -214,7 +214,7 @@
 			</div>
 			</div>
 	  </div>
-	  <p>With presplitting we distort the mesh slightly and reduce the softening effect on sharp corners and edges.</p>
+	  <p>With presplitting we distort the mesh slightly and reduces the softening effect on sharp corners and edges.</p>
 	  <div align="middle">
 		<table style="width=100%" box-sizing="border-box">
 			<tr>
@@ -270,5 +270,6 @@
 	</div>
 	</div>
 </div>
+<h2 align="middle">https://aheadboat.github.io/dalao-writeups/proj2/index.html</h3>
 	</body>
 </html>
