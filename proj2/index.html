@@ -90,8 +90,24 @@
 		<div align="middle">
 			<img src="images/part2.png">
 		</div>
+		<h1>Part 3</h1>
+		<p>For area weighted vector normals we looped over each neighboring triangle by iterating over halfedges. To find the area, we took the cross product of the three points of each triangle and multiplied this by the normal and added it to a running total vector.</p>
+		<div align="middle">
+			<table>
+			  <tbody>
+				<tr>				  
+				  <td align="center"><img align="middle" src="images/q3.png">
+					<figcaption align="middle">Shading without vector normals</figcaption>
+				  </td>
+				  <td align="center"><img align="middle" src="images/q3-1.png">
+				  <figcaption align="middle">Shading with vector normals (Phong shading)</figcaption>
+				  </td>
+				</tr>
+			  </tbody>
+			</table>
+		  </div>
 		<h1>Part 4</h1>
-		<img align="middle" src="images/Screenshot 2023-03-01 152633.png" align="middle" width="400px">
+		<img align="middle" src="images/Screenshot 2023-03-01 152633.png" align="middle" width="300px">
   		<figcaption align="middle">From "Guide to Implementing Edge Operations on a Halfedge Data Structure".</figcaption>	
 		<p>First we made sure to have all the pointers on hand (10 halfedges, 4 vertices, 4 edges, 2 faces). Then, we reassign the all of the pointers based on the "before flip" and "after flip" diagrams such that the edge from v1 to v0 now ran from v3 to v2 and the half edges were likewise redefined. We ran into a bug where flipping an edge would time out, which we fixed by cross checking each pointer with the diagram and found that we had wrongfully assigned some pointers to the wrong values.</p>
 		<div align="middle">
@@ -141,29 +157,29 @@
 				  <tr>
 					<td>
 					  <img src="images/q6.png" align="middle" width="600px"/>
-					  <figcaption align="middle">step 1</figcaption>
+					  <figcaption align="middle"></figcaption>
 					</td>
 					<td>
 					  <img src="images/q6-1.png" align="middle" width="600px"/>
-					  <figcaption align="middle">step 2</figcaption>
+					  <figcaption align="middle"></figcaption>
 					</td>
 				  </tr>
 				  <br>
 				  <tr>
 					<td>
 					  <img src="images/q6-2.png" align="middle" width="600px"/>
-					  <figcaption align="middle">step 3</figcaption>
+					  <figcaption align="middle"></figcaption>
 					</td>
 					<td>
 					  <img src="images/q6-3.png" align="middle" width="600px"/>
-					  <figcaption align="middle">step 4</figcaption>
+					  <figcaption align="middle"></figcaption>
 					</td>
 				  </tr>
 				  <br>
 				  <tr>
 					<td>
 					  <img src="images/q6-4.png" align="middle" width="600px"/>
-					  <figcaption align="middle">control point</figcaption>
+					  <figcaption align="middle"></figcaption>
 					</td>
 				  </tr>
 				</table>
@@ -176,22 +192,22 @@
 				<tr>
 				  <td>
 					<img src="images/q6cow1.png" align="middle" width="600px"/>
-					<figcaption align="middle">step 1</figcaption>
+					<figcaption align="middle">Cow without presplits</figcaption>
 				  </td>
 				  <td>
 					<img src="images/q6cow.png" align="middle" width="600px"/>
-					<figcaption align="middle">step 2</figcaption>
+					<figcaption align="middle"></figcaption>
 				  </td>
 				</tr>
 				<br>
 				<tr>
 				  <td>
 					<img src="images/q6cow2.png" align="middle" width="600px"/>
-					<figcaption align="middle">step 3</figcaption>
+					<figcaption align="middle">Cow with presplits</figcaption>
 				  </td>
 				  <td>
 					<img src="images/q6cow3.png" align="middle" width="600px"/>
-					<figcaption align="middle">step 4</figcaption>
+					<figcaption align="middle"></figcaption>
 				  </td>
 				</tr>
 			  </table>
@@ -204,22 +220,22 @@
 			<tr>
 			  <td>
 				<img src="images/q6cube.png" align="middle" width="600px"/>
-				<figcaption align="middle">step 1</figcaption>
+				<figcaption align="middle"></figcaption>
 			  </td>
 			  <td>
 				<img src="images/q6cube1.png" align="middle" width="600px"/>
-				<figcaption align="middle">step 2</figcaption>
+				<figcaption align="middle"></figcaption>
 			  </td>
 			</tr>
 			<br>
 			<tr>
 			  <td>
 				<img src="images/q6cube2.png" align="middle" width="600px"/>
-				<figcaption align="middle">step 3</figcaption>
+				<figcaption align="middle">Cube without preprocessing</figcaption>
 			  </td>
 			  <td>
 				<img src="images/q6cube3.png" align="middle" width="600px"/>
-				<figcaption align="middle">step 4</figcaption>
+				<figcaption align="middle"></figcaption>
 			  </td>
 			</tr>
 		  </table>
@@ -232,22 +248,22 @@
 		<tr>
 		  <td>
 			<img src="images/q6cubea.png" align="middle" width="600px"/>
-			<figcaption align="middle">step 1</figcaption>
+			<figcaption align="middle"></figcaption>
 		  </td>
 		  <td>
 			<img src="images/q6cubea1.png" align="middle" width="600px"/>
-			<figcaption align="middle">step 2</figcaption>
+			<figcaption align="middle"></figcaption>
 		  </td>
 		</tr>
 		<br>
 		<tr>
 		  <td>
 			<img src="images/q6cubea2.png" align="middle" width="600px"/>
-			<figcaption align="middle">step 3</figcaption>
+			<figcaption align="middle">Cube with split preprocessing</figcaption>
 		  </td>
 		  <td>
 			<img src="images/q6cubea3.png" align="middle" width="600px"/>
-			<figcaption align="middle">step 4</figcaption>
+			<figcaption align="middle"></figcaption>
 		  </td>
 		</tr>
 	  </table>
