@@ -50,7 +50,7 @@
 
 
 <div align="center">
-  <table style="width=100%">
+  <table style="width:100%">
       <tr>
           <td align="middle">
           <img src="images/example_image.png" width="480px" />
@@ -79,6 +79,9 @@ Show images with normal shading for a few small .dae files. -->
 <p>
     Generating a ray requires an origin coordinate (the camera position in worldspace) and a normalized direction vector. We’re given a pixel coordinate in the camera’s space, and we have to transform it to worldspace. Given the camera’s field of view angles (hFov and vFov in degrees), we convert them to radians, and map the sensor plane to have bottom left corner at (-tan(hFov/2), -tan(vFov/2), -1) and top right corner at (tan(hFov/2), tan(vFov/2), -1). We then map (0,0) in camera space to the bottom right corner, and (1, 1) in camera space to the top right corner, and multiply the pixel coordinate with the matrix c2w, converting it to world space. 
 	Finding intersections between rays and scene objects required using vectors to represent the primitives themselves. Given that a ray is parameterized by r(t) = O + tD, 0 <= t <= infinity, we can find the intersection between a ray and a primitive using the Moller-Trumbore algorithm as pictured: 
+</p>
+<img src="images/moller-trumbore.jpg"/>
+<p>
 After performing the test, we will check to see if the t-values we’ve retrieved are valid. If t < min_t or t > max_t, we know the t is invalid and thus return false. Else, we update the t value so future intersection tests will not return true. 
 
 </p>
@@ -101,22 +104,12 @@ After performing the test, we will check to see if the t-values we’ve retrieve
   <table style="width:100%">
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example1.dae</figcaption>
+        <img src="images/Task1/CBspheres.png.png" align="middle" width="400px"/>
+        <figcaption>CBSpheres.dae</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example2.dae</figcaption>
-      </td>
-    </tr>
-    <tr align="center">
-      <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example3.dae</figcaption>
-      </td>
-      <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example4.dae</figcaption>
+        <img src="images/Task1/cow.png" align="middle" width="400px"/>
+        <figcaption>cow.dae</figcaption>
       </td>
     </tr>
   </table>
@@ -146,22 +139,12 @@ SAH: (# of objects split into left) * (surface area of left bbox) + (# of object
   <table style="width:100%">
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example1.dae</figcaption>
+        <img src="images/Task2/CBLucy.png" align="middle" width="400px"/>
+        <figcaption>CBLucy.dae</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example2.dae</figcaption>
-      </td>
-    </tr>
-    <tr align="center">
-      <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example3.dae</figcaption>
-      </td>
-      <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example4.dae</figcaption>
+        <img src="images/Task2/MaxPlanck.png" align="middle" width="400px"/>
+        <figcaption>maxplanck.dae</figcaption>
       </td>
     </tr>
   </table>
@@ -172,7 +155,7 @@ SAH: (# of objects split into left) * (surface area of left bbox) + (# of object
   Compare rendering times on a few scenes with moderately complex geometries with and without BVH acceleration. Present your results in a one-paragraph analysis.
 </h3>
 <p>
-    YOUR RESPONSE GOES HERE
+    For CBLucy.dae, before BVH acceleration we get 35146.32 intersection tests per ray, whereas after BVH acceleration we get around 6 per ray. With a BVH, the number of intersections per ray becomes O(logn) whreeas without BVH it is O(n), meaning the mesh size can be increased without significantly affecting computation time. 
 </p>
 <br>
 
@@ -218,23 +201,23 @@ We average light by number of samples taken (ns_area_light).
     <br>
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example1.dae</figcaption>
+        <img src="images/Task3/CBbunny_hemisphere.png" align="middle" width="400px"/>
+        <figcaption>CBbunny.dae with UHS</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example1.dae</figcaption>
+        <img src="images/Task3/CBbunny_importance.png" align="middle" width="400px"/>
+        <figcaption>CBbunny.dae with Light Sampling</figcaption>
       </td>
     </tr>
     <br>
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example2.dae</figcaption>
+        <img src="images/Task3/CBspheres_hemisphere.png" align="middle" width="400px"/>
+        <figcaption>CBSpheres_lambertian.dae with UHS</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example2.dae</figcaption>
+        <img src="images/Task3/CBspheres_importance.png" align="middle" width="400px"/>
+        <figcaption>CBSpheres_lambertian.dae with Light Sampling</figcaption>
       </td>
     </tr>
     <br>
@@ -250,28 +233,28 @@ We average light by number of samples taken (ns_area_light).
   <table style="width:100%">
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="200px"/>
-        <figcaption>1 Light Ray (example1.dae)</figcaption>
+        <img src="images/Task3/CBspheres_1_1.png" align="middle" width="200px"/>
+        <figcaption>1 Light Ray (CBSpheres_lambertian.dae)</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="200px"/>
-        <figcaption>4 Light Rays (example1.dae)</figcaption>
+        <img src="images/Task3/CBspheres_1_4.png" align="middle" width="200px"/>
+        <figcaption>4 Light Rays (CBSpheres_lambertian.dae)</figcaption>
       </td>
     </tr>
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="200px"/>
-        <figcaption>16 Light Rays (example1.dae)</figcaption>
+        <img src="images/Task3/CBspheres_1_16.png" align="middle" width="200px"/>
+        <figcaption>16 Light Rays (CBSpheres_lambertian.dae)</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="200px"/>
-        <figcaption>64 Light Rays (example1.dae)</figcaption>
+        <img src="images/Task3/CBspheres_1_64.png" align="middle" width="200px"/>
+        <figcaption>64 Light Rays (CBSpheres_lambertian.dae)</figcaption>
       </td>
     </tr>
   </table>
 </div>
 <p>
-    YOUR EXPLANATION GOES HERE
+    As we increase the number of light rays sampled, the noise decreases linearly. This is because the variance in lighting decreases as we increase the sample size. 
 </p>
 <br>
 
@@ -309,12 +292,12 @@ You will probably want to use the instructional machines for the above renders i
   <table style="width:100%">
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example1.dae</figcaption>
+        <img src="images/Task4/beast_global_illum.png" align="middle" width="400px"/>
+        <figcaption>beast.dae</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>example2.dae</figcaption>
+        <img src="images/Task4/bunny_global_illum.png" align="middle" width="400px"/>
+        <figcaption>bunny.dae</figcaption>
       </td>
     </tr>
   </table>
@@ -329,19 +312,19 @@ You will probably want to use the instructional machines for the above renders i
   <table style="width:100%">
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>Only direct illumination (example1.dae)</figcaption>
+        <img src="images/Task4/CBbunny_direct_illum.png" align="middle" width="400px"/>
+        <figcaption>Only direct illumination (CBbunny.dae)</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>Only indirect illumination (example1.dae)</figcaption>
+        <img src="images/Task4/CBbunny_indirect_illum.png" align="middle" width="400px"/>
+        <figcaption>Only indirect illumination (CBbunny.dae)</figcaption>
       </td>
     </tr>
   </table>
 </div>
 <br>
 <p>
-    YOUR EXPLANATION GOES HERE
+    The indirect illumination is only lit by indirect bounces of light. Thus, parts of the scene that aren't hit by the direct lighting, like the undersides of the bunny, are lit. 
 </p>
 <br>
 
@@ -353,27 +336,27 @@ You will probably want to use the instructional machines for the above renders i
   <table style="width:100%">
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBbunny_m0.png" align="middle" width="400px"/>
         <figcaption>max_ray_depth = 0 (CBbunny.dae)</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBbunny_m1.png" align="middle" width="400px"/>
         <figcaption>max_ray_depth = 1 (CBbunny.dae)</figcaption>
       </td>
     </tr>
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBbunny_m2.png" align="middle" width="400px"/>
         <figcaption>max_ray_depth = 2 (CBbunny.dae)</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBbunny_m3.png" align="middle" width="400px"/>
         <figcaption>max_ray_depth = 3 (CBbunny.dae)</figcaption>
       </td>
     </tr>
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBbunny_m100.png" align="middle" width="400px"/>
         <figcaption>max_ray_depth = 100 (CBbunny.dae)</figcaption>
       </td>
     </tr>
@@ -381,7 +364,7 @@ You will probably want to use the instructional machines for the above renders i
 </div>
 <br>
 <p>
-    YOUR EXPLANATION GOES HERE
+    The most visible change is from m=0 to m=1. After that, the changes are much smaller as we weigh them much less. As observed, there is very very little difference between m=3 and m=100. 
 </p>
 <br>
 
@@ -393,37 +376,37 @@ You will probably want to use the instructional machines for the above renders i
   <table style="width:100%">
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBspheres_1spp.png.png" align="middle" width="400px"/>
         <figcaption>1 sample per pixel (example1.dae)</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBspheres_2spp.png" align="middle" width="400px"/>
         <figcaption>2 samples per pixel (example1.dae)</figcaption>
       </td>
     </tr>
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBspheres_4spp.png" align="middle" width="400px"/>
         <figcaption>4 samples per pixel (example1.dae)</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBspheres_8spp.png" align="middle" width="400px"/>
         <figcaption>8 samples per pixel (example1.dae)</figcaption>
       </td>
     </tr>
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBspheres_16spp.png" align="middle" width="400px"/>
         <figcaption>16 samples per pixel (example1.dae)</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBspheres_64spp.png" align="middle" width="400px"/>
         <figcaption>64 samples per pixel (example1.dae)</figcaption>
       </td>
     </tr>
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
+        <img src="images/Task4/CBspheres_1024spp.png" align="middle" width="400px"/>
         <figcaption>1024 samples per pixel (example1.dae)</figcaption>
       </td>
     </tr>
@@ -431,7 +414,7 @@ You will probably want to use the instructional machines for the above renders i
 </div>
 <br>
 <p>
-    YOUR EXPLANATION GOES HERE
+    Global illumination requires a large spp (sample-per-pixel) rate to converge to a noise-less rendering (i.e. it is very expensive). 
 </p>
 <br>
 
@@ -458,22 +441,22 @@ Pick one scene and render it with at least 2048 samples per pixel. Show a good s
   <table style="width:100%">
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>Rendered image (example1.dae)</figcaption>
+        <img src="images/Task5/CBbunny_adaptive.png" align="middle" width="400px"/>
+        <figcaption>Rendered image (CBbunny.dae)</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>Sample rate image (example1.dae)</figcaption>
+        <img src="images/Task5/CBbunny_adaptive_rate.png" align="middle" width="400px"/>
+        <figcaption>Sample rate image (CBbunny.dae)</figcaption>
       </td>
     </tr>
     <tr align="center">
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>Rendered image (example2.dae)</figcaption>
+        <img src="images/Task5/CBSpheres_adaptive.png" align="middle" width="400px"/>
+        <figcaption>Rendered image (CBSpheres.dae)</figcaption>
       </td>
       <td>
-        <img src="images/your_file.png" align="middle" width="400px"/>
-        <figcaption>Sample rate image (example2.dae)</figcaption>
+        <img src="images/Task5/CBSpheres_adaptive_rate.png" align="middle" width="400px"/>
+        <figcaption>Sample rate image (CBspheres.dae)</figcaption>
       </td>
     </tr>
   </table>
