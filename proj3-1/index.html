@@ -41,10 +41,10 @@
 
 <h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2023</h1>
 <h1 align="middle">Project 3-1: Path Tracer</h1>
-<h2 align="middle">YOUR NAME(S)</h2>
+<h2 align="middle">Alex Liang</h2>
 
 <!-- Add Website URL -->
-<h2 align="middle">Website URL: <a href="TODO">https://aheadboat.github.io/dalao-writeups/proj3-1/index.html</a></h2>
+<h2 align="middle">Website URL: <a href="https://aheadboat.github.io/dalao-writeups/proj3-1/index.html">https://aheadboat.github.io/dalao-writeups/proj3-1/index.html</a></h2>
 
 <br><br>
 
@@ -53,7 +53,7 @@
   <table style="width:100%">
       <tr>
           <td align="middle">
-          <img src="images/example_image.png" width="480px" />
+          <img src="images/CBbunny_m100.png" width="480px" />
           <figcaption align="middle">Results Caption: my bunny is the bounciest bunny</figcaption>
       </tr>
   </table>
@@ -64,7 +64,8 @@
 
 <h2 align="middle">Overview</h2>
 <p>
-    YOUR RESPONSE GOES HERE
+    In this project, I implemented the core processes in the pathtracing pipeline. Pathtracing is a powerful raytracing tool that involves using Monte-Carlo estimators to render 3D scenes with realistic global illumination. Path tracing works by continuously sampling pixels of an image by casting rays - which is also its central bottleneck in performance.
+	This project aims to use pathtracing to render large scenes while also using techniques such as Moller-Trumbore and BVHs to optimize the speed and quality of rendering.  
 </p>
 <br>
 
@@ -104,7 +105,7 @@ After performing the test, we will check to see if the t-values we’ve retrieve
   <table style="width:100%">
     <tr align="center">
       <td>
-        <img src="images/Task1/CBspheres.png.png" align="middle" width="400px"/>
+        <img src="images/Task1/CBspheres.png" align="middle" width="400px"/>
         <figcaption>CBSpheres.dae</figcaption>
       </td>
       <td>
@@ -376,38 +377,38 @@ You will probably want to use the instructional machines for the above renders i
   <table style="width:100%">
     <tr align="center">
       <td>
-        <img src="images/Task4/CBspheres_1spp.png.png" align="middle" width="400px"/>
-        <figcaption>1 sample per pixel (example1.dae)</figcaption>
+        <img src="images/Task4/CBspheres_1spp.png" align="middle" width="400px"/>
+        <figcaption>1 sample per pixel (CBspheres.dae)</figcaption>
       </td>
       <td>
         <img src="images/Task4/CBspheres_2spp.png" align="middle" width="400px"/>
-        <figcaption>2 samples per pixel (example1.dae)</figcaption>
+        <figcaption>2 samples per pixel (CBspheres.dae)</figcaption>
       </td>
     </tr>
     <tr align="center">
       <td>
         <img src="images/Task4/CBspheres_4spp.png" align="middle" width="400px"/>
-        <figcaption>4 samples per pixel (example1.dae)</figcaption>
+        <figcaption>4 samples per pixel (CBspheres.dae)</figcaption>
       </td>
       <td>
         <img src="images/Task4/CBspheres_8spp.png" align="middle" width="400px"/>
-        <figcaption>8 samples per pixel (example1.dae)</figcaption>
+        <figcaption>8 samples per pixel (CBspheres.dae)</figcaption>
       </td>
     </tr>
     <tr align="center">
       <td>
         <img src="images/Task4/CBspheres_16spp.png" align="middle" width="400px"/>
-        <figcaption>16 samples per pixel (example1.dae)</figcaption>
+        <figcaption>16 samples per pixel (CBspheres.dae)</figcaption>
       </td>
       <td>
         <img src="images/Task4/CBspheres_64spp.png" align="middle" width="400px"/>
-        <figcaption>64 samples per pixel (example1.dae)</figcaption>
+        <figcaption>64 samples per pixel (CBspheres.dae)</figcaption>
       </td>
     </tr>
     <tr align="center">
       <td>
         <img src="images/Task4/CBspheres_1024spp.png" align="middle" width="400px"/>
-        <figcaption>1024 samples per pixel (example1.dae)</figcaption>
+        <figcaption>1024 samples per pixel (CBspheres.dae)</figcaption>
       </td>
     </tr>
   </table>
