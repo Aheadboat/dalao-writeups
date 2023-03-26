@@ -9,43 +9,106 @@
       padding-left: 100px;  
     }  
   </style> 
-<title>Your Name  |  CS 184</title>
+<title>Alex Liang  |  CS 184</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 </head>
 <body>
 <br />
 <h1 align="middle">Assignment 3-2: Additional Features to PathTracer</h1>
-    <h2 align="middle">Your Name</h2>
-    <h2 align="middle">(Webpage URL)</h2>
+    <h2 align="middle">Alex Liang</h2>
+    <h2 align="middle">https://aheadboat.github.io/dalao-writeups/proj3-2/index.html</h2>
 
     <div class="padded">
 
-        
-        * NOTE: For this project, you will choose TWO out of the four given parts to complete. One of those parts must be Part 1 or Part 2. In other words, you can choose any combination of two parts except the pair (Part 3, Part 4).
-
+        <h3 align=="middle">Overview</h3>
+        <p>
+            This project aims to further refine the pathtracer we created in part 1 to model different materials (mirrors, glass) and cameras. By the end of the project (and parts 1 and 4), I was able to properly model glasses and reflective surfaces, as well as simulate a camera in focusing and changing lens radius. 
+            For this project, I implemented Parts 1 and 4. The approach I used towards Parts 1 and Parts 4 were very straightforward - I referenced the lecture slides whenever I encountered something I wasn't sure of. I encountered a "problem" in Part 1 where I was rendering all-black spheres, but after painstakingly searching for a bug for two hours, I realized I was using m=1!
+        </p>
 
         <h3 align="middle">Part 1. Mirror and Glass Materials</h3>
-
+        <p>
+            For this part, we implemented ideal mirrors and glass materials. Implementing mirrors relied heavily on the reflect function, in which we simply reversed the incoming rays' x and y directions. We used Snell's Law for glass materials to determine the wi direction after refraction.           
+        </p>
         <p><b>
             Show a sequence of six images of scene `CBspheres.dae` rendered with `max_ray_depth` set to 0, 1, 2, 3, 4, 5, and 100. The other settings should be at least 64 samples per pixel and 4 samples per light. Make sure to include all screenshots.
         </b></p>
-        <p>
-            Your response goes here.
-        </p>
+        <div align="middle">
+            <table style="width:100%">
+              <tr align="center">
+                <td>
+                  <img src="images/Task1_m0.png" align="middle" width="400px"/>
+                  <figcaption>max_ray_depth = 0</figcaption>
+                </td>
+                <td>
+                  <img src="images/Task1_m1.png" align="middle" width="400px"/>
+                  <figcaption>max_ray_depth = 1</figcaption>
+                </td>
+              </tr>
+              <br>
+              <tr align="center">
+                <td>
+                  <img src="images/Task1_m2.png" align="middle" width="400px"/>
+                  <figcaption>max_ray_depth = 2</figcaption>
+                </td>
+                <td>
+                  <img src="images/Task1_m3.png" align="middle" width="400px"/>
+                  <figcaption>max_ray_depth = 3</figcaption>
+                </td>
+              </tr>
+              <br>
+              <tr align="center">
+                <td>
+                  <img src="images/Task1_m4.png" align="middle" width="400px"/>
+                  <figcaption>max_ray_depth = 4</figcaption>
+                </td>
+                <td>
+                  <img src="images/Task1_m5.png" align="middle" width="400px"/>
+                  <figcaption>max_ray_depth = 5</figcaption>
+                </td>
+              </tr>
+              <br>
+              <tr align="center">
+                <td>
+                  <img src="images/Task1_m100.png" align="middle" width="400px"/>
+                  <figcaption>max_ray_depth = 100</figcaption>
+                </td>
+              </tr>
+              <br>
+            </table>
+          </div>
         <br>
         <p><b>
             Point out the new multibounce effects that appear in each image. 
         </b></p>
         <p>
-            Your response goes here.
+            At m=0, we only have the area light (no bounce illumination). 
+        </p>
+        <p>
+            At m=1, we can see the effects of one bounce illumination. Now the room is lit up by the area light and the spheres are lit up where the area light directly bounces off them. 
+        </p>
+        <p>
+            At m=2, the spheres start to take on some light from the environment (walls), so they are no longer pitch black. 
+        </p>
+        <p>
+            At m=3, the right sphere starts to take on more light from the room, and also lights the area below the sphere. 
+        </p>
+        <p>
+            At m=4, we can see the right sphere's reflection within the left sphere is now lit up. We can also see the right sphere reflects light back onto the blue wall. 
+        </p>
+        <p>
+            At m=5, the image has started converging. There is less noise around the reflection of the area light in the right sphere. In addition, the right sphere's reflection in the left sphere becomes more detailed. 
+        </p>
+        <p>
+            At m=100, the image has mostly converged and there aren't any new multibounce effects. The reflection of the right sphere has become clearer. 
         </p>
         <br>
         <p><b>
             Explain how these bounce numbers relate to the particular effects that appear. Make sure to include all screenshots.
         </b></p>
         <p>
-            Your response goes here.
+            The area under the right sphere gets lit up at m=3 because the light first bounces off the sphere, then the wall, then back under the sphere. 
         </p>
         <br>
 
@@ -53,25 +116,71 @@
 
         <h3 align="middle">Part 4. Depth of Field</h3>
         <p><b>
-            In a few sentences, explain the differences between a pinhole camera model and a thin-lens camera model. 
+            All the images generated before this part have used a 'pinhole' camera where everything was always in focus. The thin-lens camera model, which we implemented in this part, is more more in line with real-world applications like the way humans see and the way cameras work. 
+            One big difference between a thin-lens camera and a pinhole camera is focal length. In the pinhole model, focal length is the distance between the aperture and the sensor, while in thin-lens, focal length is the distance at which parallel rays intersect. 
         </b></p>
-        <p>
-            Your response goes here.
-        </p>
+  
         <br>
         <p><b>
-            Show a "focus stack" where you focus at 4 visibly different depths through a scene. Make sure to include all screenshots.
+            Show a "focus stack" where you focus at 4 visibly different depths through a scene.
         </b></p>
-        <p>
-            Your response goes here.
-        </p>
+        
+        <div align="middle">
+            <table style="width:100%">
+              <tr align="center">
+                <td>
+                  <img src="images/CBdragon_focus_1.png" align="middle" width="400px"/>
+                  <figcaption>Depth = 3</figcaption>
+                </td>
+                <td>
+                  <img src="images/CBdragon_focus_2.png" align="middle" width="400px"/>
+                  <figcaption>Depth = 3.75</figcaption>
+                </td>
+              </tr>
+              <br>
+              <tr align="center">
+                <td>
+                  <img src="images/CBdragon_focus_4.png" align="middle" width="400px"/>
+                  <figcaption>Depth = 4.5</figcaption>
+                </td>
+                <td>
+                  <img src="images/CBdragon_focus_3.png" align="middle" width="400px"/>
+                  <figcaption>Depth = 5.25</figcaption>
+                </td>
+              </tr>
+              <br>
+            </table>
+          </div>
         <br>
         <p><b>
             Show a sequence of 4 pictures with visibly different aperture sizes, all focused at the same point in a scene. Make sure to include all screenshots.
         </b></p>
-        <p>
-            Your response goes here.
-        </p>
+        <div align="middle">
+            <table style="width:100%">
+              <tr align="center">
+                <td>
+                  <img src="images/CBdragon_lens_1.png" align="middle" width="400px"/>
+                  <figcaption>Aperture Size = 0</figcaption>
+                </td>
+                <td>
+                  <img src="images/CBdragon_lens_4.png" align="middle" width="400px"/>
+                  <figcaption>Aperture Size = 0.3</figcaption>
+                </td>
+              </tr>
+              <br>
+              <tr align="center">
+                <td>
+                  <img src="images/CBdragon_lens_3.png" align="middle" width="400px"/>
+                  <figcaption>Aperture Size = 0.6</figcaption>
+                </td>
+                <td>
+                  <img src="images/CBdragon_lens_2.png" align="middle" width="400px"/>
+                  <figcaption>Aperture Size = 1.2</figcaption>
+                </td>
+              </tr>
+              <br>
+            </table>
+          </div>
         <br>
 
     </div>
