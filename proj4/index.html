@@ -1,7 +1,293 @@
-<html>
-	<head>
-	</head>
-	<body>
-		Project 4 here
-	</body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+  body {
+    padding: 100px;
+    width: 1000px;
+    margin: auto;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: #121212;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+</style>
+<title>CS 184 Mesh Editor</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+
+<body>
+
+<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2017</h1>
+<h1 align="middle">Project 4: Cloth Simulator</h1>
+<h2 align="middle">YOUR NAME, CS184-??</h2>
+
+<br><br>
+
+<div>
+
+<h2 align="middle">Overview</h2>
+<p>In this project, I implemented a realistic cloth simulator along with several realistic shaders. The cloth simulation is modeled as a 2D grid of point masses connected by a spring lattice. Movement is simulated individually on each point mass in the cloth by accumulating all the forces acting upon it (external forces like gravity, and the spring forces that other point masses exert upon it). We use Verlet integration to simulate movement along each timestep.
+	I also address collisions with scene objects and self-collisions to ensure the cloth can not clip through scene objects or itself. 
+</p>
+
+<h2 align="middle">Part I: Masses and springs</h2>
+<img src="images/Task1/Screenshot (125).png align="middle" width="400px"/>
+<figcaption>scene/pinned2</figcaption>
+<div align="middle">
+	<table style="width:100%">
+	  <tr align="center">
+		<td>
+		  <img src="images/Task1/Screenshot (126).png align="middle" width="400px"/>
+		  <figcaption>Without shearing constraints</figcaption>
+		</td>
+		<td>
+		  <img src="images/Task1/Screenshot (127).png" align="middle" width="400px"/>
+		  <figcaption>With only shearing constraints</figcaption>
+		</td>
+	  </tr>
+	  <br>
+	  <tr align="center">
+		<td>
+		  <img src="images/Task1/Screenshot (128).png" align="middle" width="400px"/>
+		  <figcaption>With all constraints</figcaption>
+		</td>
+	  </tr>
+	  <br>
+	</table>
+  </div>
+
+<h2 align="middle">Part II: Simulation via numerical integration</h2>
+<p>The spring constant affects how tightly the cloth holds itself together. At a high spring constant (ks = 50000), the cloth is very tight at rest compared to at a low spring constant (ks = 50).</p>
+<br>
+<p>Density affects the 'weight' of objects - a higher density results in the cloth hanging lower at rest since the weight overpowers the spring constraints.</p>
+<br>
+<p>Damping does not affect how the cloth looks like at rest - instead, it affects the rate of change of the cloth (when it is falling). At high damping levels, the cloth takes much longer to fall to rest</p>
+<div align="middle">
+	<table style="width:100%">
+	  <tr align="center">
+		<td>
+		  <img src="images/Task2/Screenshot (162).png" align="middle" width="400px"/>
+		  <figcaption>density = 15, ks = 50000. The cloth rests very 'tightly'.</figcaption>
+		</td>
+		<td>
+		  <img src="images/Task2/Screenshot (163).png" align="middle" width="400px"/>
+		  <figcaption>density = 50, ks = 50000. The cloth hangs lower due to higher density.</figcaption>
+		</td>
+	  </tr>
+	  <br>
+	  <tr align="center">
+		<td>
+		  <img src="images/Task2/Screenshot (164).png" align="middle" width="400px"/>
+		  <figcaption>density = 50, ks = 50. The cloth is very loose due to weak spring constraints and high density.</figcaption>
+		</td>
+		<td>
+			<img src="images/Task2/Screenshot (132).png" align="middle" width="400px"/>
+			<figcaption>density = 15, ks = 5000. Default cloth.</figcaption>
+		  </td>
+	  </tr>
+	  <br>
+	  
+	  <br>
+	</table>
+  </div>
+<h2 align="middle">Part III: Handing collisions with other objects</h2>
+<div align="middle">
+	<table style="width:100%">
+	  <tr align="center">
+		<td>
+		  <img src="images/Task3/Screenshot (133).png" align="middle" width="400px"/>
+		  <figcaption>ks = 5000</figcaption>
+		</td>
+		<td>
+		  <img src="images/Task3/Screenshot (134).png" align="middle" width="400px"/>
+		  <figcaption>ks = 500</figcaption>
+		</td>
+	  </tr>
+	  <br>
+	  <tr align="center">
+		<td>
+		  <img src="images/Task3/Screenshot (135).png" align="middle" width="400px"/>
+		  <figcaption>ks = 5000</figcaption>
+		</td>
+	  </tr>
+	  <br>
+	</table>
+  </div>
+  <p>In the first picture (ks = 5000), the cloth holds itself together but is still slightly loose off the side. In the next picture (ks = 500), the spring constant is much lower, meaning the cloth holds itself less tightly together, thus is hangs much lower. In the last picture (ks = 50000), the cloth pulls against itself very strongly, thus the drapes look tight and 'raised'</p>
+  <img src="images/Task3/Screenshot (136).png" align="middle" width="400px"/>
+   <figcaption>Cloth on plane</figcaption>
+
+   <h2 align="middle">Part IV: Handling self collisions</h2>
+   <div align="middle">
+	<table style="width:100%">
+	  <tr align = "center">
+		<th>
+			ks = 5000, density = 15
+		</th>
+		<th>
+			ks = 500, density = 5
+		</th>
+		<th>
+			ks = 500, density = 50
+		</th>
+		<th>
+			ks = 50000, density = 50
+		</th>
+	  </tr>
+	  <tr align="center">
+		<th>
+			Initital Collisions
+		</th>
+		<td>
+		  <img src="images/Task4/Screenshot (137)ks5000density15.png" align="middle" width="400px"/>
+		</td>
+		<td>
+		  <img src="images/Task4/Screenshot (139) ks500density5.png" align="middle" width="400px"/>
+		</td>
+		<td>
+			<img src="images/Task4/Screenshot (141)ks500density50.png" align="middle" width="400px"/>
+		  </td>
+		  <td>
+			<img src="images/Task4/Screenshot (143)ks50000density50.png" align="middle" width="400px"/>
+		  </td>
+	  </tr>
+	  <br>
+	  <tr align="center">
+		<th>
+			Resting State
+		</th>
+		<td>
+		  <img src="images/Task4/Screenshot (138).png" align="middle" width="400px"/>
+		</td>
+		<td>
+		  <img src="images/Task4/Screenshot (140).png" align="middle" width="400px"/>
+		</td>
+		<td>
+			<img src="images/Task4/Screenshot (142).png" align="middle" width="400px"/>
+		</td>
+		<td>
+			<img src="images/Task4/Screenshot (144).png" align="middle" width="400px"/>
+		  </td>
+	  </tr>
+	  <br>
+	</table>
+  </div>
+  <p>As the spring constant decreases, the cloth collapses further in on itself. At low spring constants (ks = 500), the cloth almost falls straight down. At high spring constants (ks = 50000), the cloth crumples less and falls 'wider'.</p>
+  <p>As density increases, the cloth 'crumples' in on itself more, making much smaller folds as it collapses inwards. As density decreases, the cloth makes bigger 'folds' as it collapses on itself. </p>
+
+<h2 align="middle">Part V: Shaders</h2>
+<p>Shaders are able to run in parallel on GPUs, thus allowing them to perform much better than other techniques (like raytracing) which run on the CPU.
+	Shader programs consist of vertex shaders and fragment shaders. First vertex shaders assign attributes to vertices in the scene and apply transformations to them, like displacement.
+Then, fragment shaders use the assigned vertex attributes to calculate/assign a color vector (RGB alpha) for each pixel in display.</p>
+<b>Blinn-Phong Shading</b>
+<p>Blinn-Phong shading sums ambient, specular, and diffuse lighting to create realistic shadings. Ambient light is the light uniformly reflecting off all surfaces, 
+	diffuse lighting is lighting from lighting sources (i.e. point lights), and specular lighting is the 'glare' of glossy materials. Depending on the parameters we choose, we can simulate lighting of different materials.
+</p>
+<div align="middle">
+	<table style="width:100%">
+	  <tr align="center">
+		<td>
+		  <img src="images/Task5/ambient.png" align="middle" width="400px"/>
+		  <figcaption>Ambient Component</figcaption>
+		</td>
+		<td>
+		  <img src="images/Task5/diffuse.png" align="middle" width="400px"/>
+		  <figcaption>Diffuse Component</figcaption>
+		</td>
+	  </tr>
+	  <br>
+	  <tr align="center">
+		<td>
+		  <img src="images/Task5/specular.png" align="middle" width="400px"/>
+		  <figcaption>Specular Component</figcaption>
+		</td>
+		<td>
+		  <img src="images/Task5/bphong.png" align="middle" width="400px"/>
+		  <figcaption>Total Blinn-Phong Shading</figcaption>
+		</td>
+	  </tr>
+	  <br>
+	</table>
+  </div>
+  <b>Custom Texture:</b>
+  <div align="middle">
+	<table style="width:100%">
+	  <tr align="center">
+		<td>
+		  <img src="images/Task5/bocchitexture.png" align="middle" width="400px"/>
+		  <figcaption>Default View</figcaption>
+		</td>
+		<td>
+		  <img src="images/Task5/bocchitexturetop.png" align="middle" width="400px"/>
+		  <figcaption>Top View</figcaption>
+		</td>
+	  </tr>
+	  <br>
+	</table>
+  </div>
+  <b>Bump/Displacement Mapping</b>
+  <div align="middle">
+	<table style="width:100%">
+	  <tr align="center">
+		<td>
+		  <img src="images/Task5/displacement_default.png" align="middle" width="400px"/>
+		  <figcaption>Default Displacement Mapping</figcaption>
+		</td>
+		<td>
+		  <img src="images/Task5/Screenshot (150).png" align="middle" width="400px"/>
+		  <figcaption>Default Bump Mapping</figcaption>
+		</td>
+	  </tr>
+	  <br>
+	  <tr align="center">
+		<td>
+		  <img src="images/Task5/Screenshot (151).png" align="middle" width="400px"/>
+		  <figcaption>Default Bump Mapping (cloth)</figcaption>
+		</td>
+	</tr>
+	<br>
+	<tr align="center">
+		<td>
+		  <img src="images/Task5/Screenshot (156)o16a16.png" align="middle" width="400px"/>
+		  <figcaption>Bump Mapping -o 16 -a 16</figcaption>
+		</td>
+		<td>
+		  <img src="images/Task5/Screenshot (157).png" align="middle" width="400px"/>
+		  <figcaption>Displacement Mapping -o 16 -a 16</figcaption>
+		</td>
+	</tr>
+	<br>
+	<tr align="center">
+		<td>
+		  <img src="images/Task5/Screenshot (158)o128a128.png" align="middle" width="400px"/>
+		  <figcaption>Bump Mapping -o 128 -a 128</figcaption>
+		</td>
+		<td>
+		  <img src="images/Task5/Screenshot (159).png" align="middle" width="400px"/>
+		  <figcaption>Displacement Mapping -o 128 -a 128</figcaption>
+		</td>
+	  </tr>
+	  <br>
+	</table>
+  </div>
+  <p>In the initial rendering, Bump Mapping produces a smoother image whereas Displacement produces a much more jagged sphere. As sample rate increases, however, the Bump map does less well while Displacement does much better. This can be seen in the 128x128 mapping - Bump mapping completely smooths out the bumps, whereas Displacement mapping still has pronounced bumps, and is no longer jagged/blocky in the wrong places. </p>
+  <tr align="center">
+		<td>
+		  <img src="images/Task5/Screenshot (160).png" align="middle" width="400px"/>
+		  <figcaption>Top View Sphere</figcaption>
+		</td>
+		<td>
+		  <img src="images/Task5/Screenshot (161).png" align="middle" width="400px"/>
+		  <figcaption>Top View Cloth</figcaption>
+		</td>
+	  </tr>
+	  <br>
+</body>
+
 </html>
