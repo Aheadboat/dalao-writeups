@@ -13,6 +13,12 @@
   }
   h1, h2, h3, h4 {
     font-family: 'Source Sans Pro', sans-serif;
+  }  
+  img {
+    height: auto;
+    max-width: 50%; 
+	max-height: 300px;
+    object-fit: contain;
   }
 </style>
 <title>CS 184 Mesh Editor</title>
@@ -23,9 +29,9 @@
 
 <body>
 
-<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2017</h1>
+<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2023</h1>
 <h1 align="middle">Project 4: Cloth Simulator</h1>
-<h2 align="middle">YOUR NAME, CS184-??</h2>
+<h2 align="middle">Alex Liang, CS184-adg</h2>
 
 <br><br>
 
@@ -37,13 +43,15 @@
 </p>
 
 <h2 align="middle">Part I: Masses and springs</h2>
-<img src="images/Task1/Screenshot (125).png align="middle" width="400px"/>
-<figcaption>scene/pinned2</figcaption>
+<div align="middle">
+	<img src="images/Task1/Screenshot (125).png" text-align="center" width="400px"/>
+	<figcaption>scene/pinned2</figcaption>
+</div>
 <div align="middle">
 	<table style="width:100%">
 	  <tr align="center">
 		<td>
-		  <img src="images/Task1/Screenshot (126).png align="middle" width="400px"/>
+		  <img src="images/Task1/Screenshot (126).png" align="middle" width="400px"/>
 		  <figcaption>Without shearing constraints</figcaption>
 		</td>
 		<td>
@@ -127,6 +135,7 @@
    <div align="middle">
 	<table style="width:100%">
 	  <tr align = "center">
+		<th></th>
 		<th>
 			ks = 5000, density = 15
 		</th>
@@ -234,21 +243,21 @@ Then, fragment shaders use the assigned vertex attributes to calculate/assign a 
   <b>Bump/Displacement Mapping</b>
   <div align="middle">
 	<table style="width:100%">
+		<tr align="center">
+			<td>
+			  <img src="images/Task5/Screenshot (151).png" align="middle" width="400px"/>
+			  <figcaption>Default Bump Mapping (cloth)</figcaption>
+			</td>
+		</tr>
+		<br>
 	  <tr align="center">
 		<td>
-		  <img src="images/Task5/displacement_default.png" align="middle" width="400px"/>
-		  <figcaption>Default Displacement Mapping</figcaption>
+			<img src="images/Task5/displacement_default.png" align="middle" width="400px"/>
+			<figcaption>Default Displacement Mapping</figcaption>
 		</td>
 		<td>
-		  <img src="images/Task5/Screenshot (150).png" align="middle" width="400px"/>
-		  <figcaption>Default Bump Mapping</figcaption>
-		</td>
-	  </tr>
-	  <br>
-	  <tr align="center">
-		<td>
-		  <img src="images/Task5/Screenshot (151).png" align="middle" width="400px"/>
-		  <figcaption>Default Bump Mapping (cloth)</figcaption>
+			<img src="images/Task5/Screenshot (150).png" align="middle" width="400px"/>
+			<figcaption>Default Bump Mapping</figcaption>
 		</td>
 	</tr>
 	<br>
@@ -277,17 +286,20 @@ Then, fragment shaders use the assigned vertex attributes to calculate/assign a 
 	</table>
   </div>
   <p>In the initial rendering, Bump Mapping produces a smoother image whereas Displacement produces a much more jagged sphere. As sample rate increases, however, the Bump map does less well while Displacement does much better. This can be seen in the 128x128 mapping - Bump mapping completely smooths out the bumps, whereas Displacement mapping still has pronounced bumps, and is no longer jagged/blocky in the wrong places. </p>
-  <tr align="center">
-		<td>
-		  <img src="images/Task5/Screenshot (160).png" align="middle" width="400px"/>
-		  <figcaption>Top View Sphere</figcaption>
-		</td>
-		<td>
-		  <img src="images/Task5/Screenshot (161).png" align="middle" width="400px"/>
-		  <figcaption>Top View Cloth</figcaption>
-		</td>
-	  </tr>
-	  <br>
+  <b>Mirror Shading</b>
+  <br>
+  <table style="width:100%">
+	<tr align="center">
+			<td>
+			<img src="images/Task5/Screenshot (160).png" align="middle" width="400px"/>
+			<figcaption>Top View Sphere</figcaption>
+			</td>
+			<td>
+			<img src="images/Task5/Screenshot (161).png" align="middle" width="400px"/>
+			<figcaption>Top View Cloth</figcaption>
+			</td>
+		</tr>
+	</table>
 </body>
 
 </html>
